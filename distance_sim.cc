@@ -11,6 +11,8 @@ struct sat {
   double z;
 };
 
+double dist(double x1, double y1, double z1, double x2, double y2, double z2);
+
 int main(){
   std::ifstream inFile { "3dsat.txt" };
 
@@ -18,6 +20,7 @@ int main(){
   double a,b,c;
   std::vector<sat> satellites {};
 
+  // Create set of satellites
   while(inFile >> val >> a >> b >> c){
     sat temp {};
     temp.name = val;
@@ -27,8 +30,21 @@ int main(){
     satellites.push_back(temp);
   }
 
-  for(const sat& i : satellites){
-      std::cout << i.name << ' ' << i.x << ' ' << i.y << ' ' << i.z << '\n';
-  }
+  // Request receiver coordinates from user
+  double x,y,z;
+  std::cout << "Where is the receiver (x y z): ";
+  std::cin >> x >> y >> z;
+  std::vector<double> distances;
+
   return 0;
+}
+
+
+double dist(double x1, double y1, double z1, double x2, double y2, double z2){
+  // parenthesis calculations
+  double x = x2-x1;
+  double y = y2-y1;
+  double z = z2-z1;
+  //cmath return distances
+  return std::sqrt((x*x)+(y*y)+(z*z));
 }
