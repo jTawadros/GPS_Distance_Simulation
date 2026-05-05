@@ -35,7 +35,14 @@ int main(){
   std::cout << "Where is the receiver (x y z): ";
   std::cin >> x >> y >> z;
   std::vector<double> distances;
+  double curr_dist;
 
+  for(const sat& i : satellites){
+    curr_dist = dist(x,y,z,i.x,i.y,i.z);
+    std::cout << "Distance between the receiver at : " << x << "," << y << ',' << z;
+    std::cout << " and " << i.name << " at " << i.x << "," << i.y << "," << i.z << " is : \n";
+    std::cout << curr_dist << '\n';
+  }
   return 0;
 }
 
